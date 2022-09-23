@@ -1,0 +1,93 @@
+﻿@page
+@model MascotaFeliz.App.Frontend.Pages.VisitaModel
+@{
+
+    ViewData["Title"] = "Visita PyP";
+
+    int visitaId = Model.Visita.Id;
+}
+
+<div class="row">
+    <div class="col-md-5 animate__animated animate__fadeInLeft">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-body">
+                <h3 class="fw-bolder mb-0">Registro de Visita PyP</h3>
+                <p class="fs-6 lead">Ingresa los datos a registrar.</p>
+                <form class="needs-validation clss-form" autocomplete="off" method="post">
+                    <div class="row g-3">
+                        <div class="col-6 mt-1">
+                            <label for="temperatura" class="form-label mb-0">Temperatura</label>
+                            <input type="text" asp-for="Visita.Temperatura" class="form-control" id="temperatura"
+                                placeholder="Ingresar temperatura" required>
+                            <div class="invalid-feedback">
+                                Se requiere un nombre válido.
+                            </div>
+                        </div>
+
+                        <div class="col-6 mt-1">
+                            <label for="peso" class="form-label mb-0">Peso</label>
+                            <input type="text" asp-for="Visita.Peso" class="form-control" id="peso"
+                                placeholder="Ingresar peso" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el peso.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="frecuenciaRespiratoria" class="form-label mb-0">Frecuencia Respiratoria</label>
+                            <input type="text" asp-for="Visita.FrecuenciaRespiratoria" class="form-control"
+                                id="frecuenciaRespiratoria" placeholder="Ingresar frecuencia respiratoria" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese la direccion.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="frecuenciaCardiaca" class="form-label mb-0">Frecuencia Cardiaca</label>
+                            <input type="text" asp-for="Visita.FrecuenciaCardiaca" class="form-control"
+                                id="frecuenciaCardiaca" placeholder="Ingresar frecuencia cardiaca" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el telefono.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="estadoAnimo" class="form-label mb-0">Estado Animo</label>
+                            <input type="text" asp-for="Visita.EstadoAnimo" class="form-control" id="estadoAnimo"
+                                placeholder="Ingresar estado animo" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el correo.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="recomendaciones" class="form-label mb-0">Recomendaciones</label>
+                            <input type="text" asp-for="Visita.Recomendaciones" class="form-control"
+                                id="recomendaciones" placeholder="Ingresar recomendaciones" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el correo.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="veterinario" class="form-label mb-0">Veterinario</label>
+                            <select class="form-control" id="veterinario" asp-for="Visita.IdVeterinario"
+                                name="veterinarioId" aria-label="Default select example">
+                                <option value="0">Seleccione el veterinario</option>
+                                @foreach (var veterinario in Model.veterinarios)
+                                {
+                                    <option value="@veterinario.Id">@veterinario.Nombres @veterinario.Apellidos</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <button class="w-100 btn btn-primary btn-lg mt-4" type="submit">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 animate__animated animate__fadeInRight">
+        <img src="~/img/propietario.png" class="w-100">
+    </div>
+</div>

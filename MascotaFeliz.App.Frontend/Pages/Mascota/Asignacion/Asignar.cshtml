@@ -1,0 +1,60 @@
+﻿@page
+@model MascotaFeliz.App.Frontend.Pages.AsignarModel
+@{
+    ViewData["Title"] = "Asignaciones";
+    int mascotaId = Model.Mascota.Id;
+}
+
+<div class="row">
+    <div class="col-md-5 animate__animated animate__fadeInLeft">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-body">
+                <h3 class="fw-bolder mb-0">Asignaciones Mascota</h3>
+                <p class="fs-6 lead">Ingresa los datos a registrar.</p>
+                <form class="needs-validation clss-form" autocomplete="off" method="post">
+                    <input type="hidden" asp-for="Mascota.Id" />
+                    <input type="hidden" asp-for="Mascota.Nombre" value="@Model.Mascota.Nombre" />
+                    <input type="hidden" asp-for="Mascota.Color" value="@Model.Mascota.Color" />
+                    <input type="hidden" asp-for="Mascota.Especie" value="@Model.Mascota.Especie" />
+                    <input type="hidden" asp-for="Mascota.Raza" value="@Model.Mascota.Raza" />
+                    <div class="row g-3">
+                        <div class="col-12 mt-1">
+                            <label for="nombre" class="form-label mb-0">Nombre</label>
+                            <input type="text" class="form-control" asp-for="Mascota.Nombre" id="nombre" disabled
+                                readonly>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="propietario" class="form-label mb-0">Propietario</label>
+                            <select class="form-control" id="propietario" asp-for="Mascota.Dueno.Id"                                       
+                                name="propietarioId" aria-label="Default select example">
+                                <option value="0">Seleccione el propietario</option>
+                                @foreach (var propietarios in Model.propietarios)
+                                {
+                                    <option value="@propietarios.Id">@propietarios.Nombres @propietarios.Apellidos</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="veterinario" class="form-label mb-0">Veterinario</label>
+                            <select class="form-control" id="veterinario" asp-for="Mascota.Veterinario.Id"
+                                name="veterinarioId" aria-label="Default select example">
+                                <option value="0">Seleccione el veterinario</option>
+                                @foreach (var veterinario in Model.veterinarios)
+                                {
+                                    <option value="@veterinario.Id">@veterinario.Nombres @veterinario.Apellidos</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <button class="w-100 btn btn-primary btn-lg mt-4" type="submit">Asignar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 animate__animated animate__fadeInRight">
+        <img src="~/img/animal.png" class="w-100">
+    </div>
+</div>

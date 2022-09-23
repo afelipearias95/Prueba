@@ -1,0 +1,59 @@
+﻿@page
+@model MascotaFeliz.App.Frontend.Pages.MascotaModel
+@{
+    ViewData["Title"] = "Mascotas";
+    int mascotaId = Model.Mascota.Id;
+}
+
+<div class="row">
+    <div class="col-md-5 animate__animated animate__fadeInLeft">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-body">
+                <h3 class="fw-bolder mb-0">Registro de Mascota</h3>
+                <p class="fs-6 lead">Ingresa los datos a registrar.</p>
+                <form class="needs-validation clss-form" autocomplete="off" method="post">
+                    <div class="row g-3">
+                        <div class="col-12 mt-1">
+                            <label for="nombre" class="form-label mb-0">Nombre</label>
+                            <input type="text" class="form-control" asp-for="Mascota.Nombre" id="nombre" placeholder="Ingresar nombre de mascota"
+                                required>
+                            <div class="invalid-feedback">
+                                Se requiere un nombre válido.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="especie" class="form-label mb-0">Especie</label>
+                            <input type="text" class="form-control" asp-for="Mascota.Especie" id="especie" placeholder="Ingresar especie animal"
+                                required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese la especie.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="color" class="form-label mb-0">Color</label>
+                            <input type="text" class="form-control" asp-for="Mascota.Color" id="color" placeholder="Ingresar color animal"
+                                required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el color.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="raza" class="form-label mb-0">Raza</label>
+                            <input type="text" class="form-control" id="raza" asp-for="Mascota.Raza" placeholder="Ingresar raza" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el raza.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-100 btn btn-primary btn-lg mt-4" type="submit">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 animate__animated animate__fadeInRight">
+        <img src="~/img/animal.png" class="w-100">
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@page
+@model MascotaFeliz.App.Frontend.Pages.PropietarioModel
+@{
+    ViewData["Title"] = "Propietarios";
+    
+    int pacienteId=Model.Propietario.Id;
+}
+
+<div class="row">
+    <div class="col-md-5 animate__animated animate__fadeInLeft">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-body">
+                <h3 class="fw-bolder mb-0">Registro de Propietario</h3>
+                <p class="fs-6 lead">Ingresa los datos a registrar.</p>
+                <form class="needs-validation clss-form" autocomplete="off" method="post">
+                    <div class="row g-3">
+                        <div class="col-12 mt-1">
+                            <label for="nombre" class="form-label mb-0">Nombres</label>
+                            <input type="text" asp-for="Propietario.Nombres" class="form-control" id="nombre" placeholder="Ingresar nombres" required>
+                            <div class="invalid-feedback">
+                                Se requiere un nombre válido.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="apellido" class="form-label mb-0">Apellidos</label>
+                            <input type="text" asp-for="Propietario.Apellidos" class="form-control" id="apellido" placeholder="Ingresar apellidos"
+                                required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el propitario.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="direccion" class="form-label mb-0">Dirección</label>
+                            <input type="text" asp-for="Propietario.Direccion" class="form-control" id="direccion" placeholder="Ingresar direccion"
+                                required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese la direccion.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="telefono" class="form-label mb-0">Telefono</label>
+                            <input type="text" asp-for="Propietario.Telefono" class="form-control" id="telefono" placeholder="Ingresar telefono" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el telefono.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-1">
+                            <label for="correo" class="form-label mb-0">Correo Electronico</label>
+                            <input type="email" asp-for="Propietario.Correo" class="form-control" id="correo" placeholder="Ingresar correo" required>
+                            <div class="invalid-feedback">
+                                Se requiere que ingrese el correo.
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="w-100 btn btn-primary btn-lg mt-4" type="submit">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 animate__animated animate__fadeInRight">
+        <img src="~/img/propietario.png" class="w-100">
+    </div>
+</div>

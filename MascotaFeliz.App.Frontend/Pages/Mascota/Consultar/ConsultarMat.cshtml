@@ -1,0 +1,108 @@
+﻿@page
+@model MascotaFeliz.App.Frontend.Pages.ConsultarMatModel
+@{
+  ViewData["Title"] = "Consultar Mascota";
+}
+
+
+@section Consultar
+{
+<div id="consultar" class="container py-3 mt-3 animate__animated animate__fadeIn">
+  <div class="p-3 pb-md-4 mx-auto border-bottom">
+    <h3 class="fw-bolder mb-0  text-center">Consultar Mascotas</h3>
+    <p class="fs-6 lead  text-center">En esta sección podrás consultar la información de las mascotas</p>
+
+    <form class="row gy-2 gx-3 align-items-end clss-form" autocomplete="off" method="get">
+      <div class="col">
+        <label for="mascota" class="form-label mb-0">Mascota</label>
+        <input type="text" class="form-control" id="mascota" asp-for="Mascota.Nombre" placeholder="Nombre de la Mascota">
+      </div>
+
+      <div class="col">
+        <label for="propietario" class="form-label mb-0">Propietario</label>
+        <input type="text" class="form-control" id="propietario" asp-for="Propietario.Nombres" placeholder="Nombre del propietario">
+      </div>
+
+      <div class="col">
+        <label for="veterinario" class="form-label mb-0">Veterinario</label>
+        <input type="text" class="form-control" id="veterinario" asp-for="Veterinario.Nombres" placeholder="Nombre del veterinario">
+      </div>
+      <button class="btn btn-primary py-2" type="submit" data-toggle="tooltip" data-placement="top" title="Consultar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="btn btn-primary py-2 mx-2" asp-page="../Mascota" data-toggle="tooltip" data-placement="top"
+        title="Nuevo">
+        <i class="fa-sharp fa-solid fa-plus"></i>
+      </button>
+    </form>
+  </div>
+  <main>
+    <div class="table-responsive mt-3">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Especie</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Propietario</th>
+            <th scope="col">Veterinario</th>
+            <th scope="col">Opciones</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var mascota in Model.mascotas)
+          {
+          <tr>
+            <td>@mascota.Nombre</td>
+            <td>@mascota.Especie</td>
+            <td>@mascota.Raza</td>
+            <td>
+
+              @try
+              {
+              @mascota.Dueno.Nombres <b></b> @mascota.Dueno.Apellidos
+              }
+              catch (Exception)
+              {
+              <p>No tiene propietario asignado</p>
+              }
+            </td>
+            <td>
+              @try
+              {
+              @mascota.Veterinario.Nombres <b></b> @mascota.Veterinario.Apellidos
+              }
+              catch (Exception)
+              {
+             <p> No tiene veterinario asignado</p>
+              }
+            </td>
+            <td>
+              <a class="btn btn-primary" asp-page="../Mascota" asp-route-mascotaId="@mascota.Id" data-toggle="tooltip"
+                data-placement="top" title="Editar">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+              <a class="btn btn-primary" asp-page="../Asignacion/Asignar" asp-route-mascotaId="@mascota.Id" data-toggle="tooltip"
+                data-placement="top" title="Asignar Propietario y Veterinario">
+                <i class="fa-solid fa-users-gear"></i>
+              </a>
+            </td>
+            <td>
+              <form method="get">
+                <input type="hidden" asp-for="@mascota.Id" name="idMascota" />
+                <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top"  title="Eliminar">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+</div>
+}

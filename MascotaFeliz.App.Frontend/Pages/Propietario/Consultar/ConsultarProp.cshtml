@@ -1,0 +1,84 @@
+﻿@page
+@model MascotaFeliz.App.Frontend.Pages.ConsultarPropModel
+@{
+  ViewData["Title"] = "Consultar Propietario";
+}
+
+@section Consultar
+{
+<div id="consultar" class="container py-3 mt-3 animate__animated animate__fadeIn">
+  <div class="p-3 pb-md-4 mx-auto border-bottom">
+    <h3 class="fw-bolder mb-0  text-center">Consultar Propietario</h3>
+    <p class="fs-6 lead  text-center">En esta sección podrás consultar la información de los propietarios</p>
+
+    <form class="row gy-2 gx-3 align-items-end clss-form" autocomplete="off" method="get">
+      <div class="col">
+        <label for="nombres" class="form-label mb-0">Nombres</label>
+        <input type="text" class="form-control" asp-for="Propietario.Nombres" id="nombres"
+          placeholder="Ingresar Nombre">
+      </div>
+
+      <div class="col">
+        <label for="apellidos" class="form-label mb-0">Apellidos</label>
+        <input type="text" class="form-control" asp-for="Propietario.Apellidos" id="apellidos"
+          placeholder="Ingresar apellidos">
+      </div>
+
+      <div class="col">
+        <label for="correo" class="form-label mb-0">Correo</label>
+        <input type="text" class="form-control" id="correo" asp-for="Propietario.Correo" placeholder="Ingresar correo">
+      </div>
+      <button class="btn btn-primary py-2" type="submit" data-toggle="tooltip" data-placement="top" title="Consultar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="btn btn-primary py-2 mx-2" asp-page="../Propietario" data-toggle="tooltip" data-placement="top"
+        title="Nuevo">
+        <i class="fa-sharp fa-solid fa-plus"></i>
+      </button>
+    </form>
+  </div>
+  <main>
+    <div class="table-responsive mt-3">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Opciones</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var propietario in Model.propietarios)
+          {
+          <tr>
+            <td>@propietario.Nombres @propietario.Apellidos</td>
+            <td>@propietario.Direccion</td>
+            <td>@propietario.Telefono</td>
+            <td>@propietario.Correo</td>
+            <td>
+              <a class="btn btn-primary" asp-page="../Propietario" asp-route-propietarioId="@propietario.Id"
+                data-toggle="tooltip" data-placement="top" title="Editar">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+            </td>
+            <td>
+              <form method="get">
+                <input type="hidden" asp-for="@propietario.Id" name="idPropietario" />
+                <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top"  title="Eliminar">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+</div>
+}
